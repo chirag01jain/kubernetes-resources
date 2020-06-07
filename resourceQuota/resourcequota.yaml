@@ -1,0 +1,16 @@
+#Replace "namespace-name" to the name on which you want to apply resource quota.
+#Resoure quota is namespaced (kubectl api-resources | grep quota)
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: namespace-name
+  namespace: quota
+spec:
+  hard:
+    cpu: "1"
+    memory: 1G
+    pods: "10"
+    services: "3"
+    secrets: "5"
+    replicationcontrollers: "5"
+    persistentvolumeclaims: "5"

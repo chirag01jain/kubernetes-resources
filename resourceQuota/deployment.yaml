@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+     name: deploy-quota
+     labels:
+       disk: ssd
+     namespace: quota
+spec:
+     replicas: 1
+     selector:
+        matchLabels:
+          disk: ssd
+     template:
+       metadata:
+          name: pod-deploy-quota
+          labels:
+             disk: ssd
+       spec:
+          containers:
+          - name: nginx
+            image: nginx:latest
+            resources:
+              requests:
+                    cpu: "250m"
+                    memory: "128Mi"
+              limits:
+                    cpu: "350m"
+                    memory: "200Mi"
