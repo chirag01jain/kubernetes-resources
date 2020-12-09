@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: http-lb
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
+    service.beta.kubernetes.io/do-loadbalancer-size-slug: "lb-large"
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx-example
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
